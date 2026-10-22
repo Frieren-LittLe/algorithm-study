@@ -1,0 +1,28 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+struct S {
+	string name;
+	int c, m, e;
+	int sum() {
+		return c + m + e;
+	}
+};
+
+int main() {
+	int N;
+	cin >> N;
+	S a[1002];
+	for (int i = 0;i < N;i++) {
+		cin >> a[i].name >> a[i].c >> a[i].m >> a[i].e;
+	}
+	S max = a[0];
+	for (int i = 1;i < N;i++) {
+		if (a[i].sum() > max.sum()) {
+			max = a[i];
+		}
+	}
+	cout << max.name << " " << max.c << " " << max.m << " " << max.e << endl;
+	return 0;
+}

@@ -1,0 +1,39 @@
+#include<iostream>
+#include<string>
+//<string> 是 C++ 标准库中专门处理字符串的头文件，定义了 string 类型及其相关操作
+using namespace std;
+
+int main() {
+	int a[26] = {
+		1,2,3,
+		1,2,3,
+		1,2,3,
+		1,2,3,
+		1,2,3,
+		1,2,3,4,
+		1,2,3,
+		1,2,3,4
+	};
+	//这是数组的完全初始化写法，每个下标（底标）都有对应的初始值
+	string s;
+	//string用于定义字符串，源自于头文件<string>
+	getline(cin, s);
+	//getline(cin, 字符串名称) 是 C++ 中读取一整行字符串的函数，能读取包含空格的整行输入,直到遇到换行符‘\n’为止，存入对应字符串中
+	//和cin.getline(s,长度)的区别就是不限长度
+	int ans = 0;
+	for (int i = 0;i < s.length();i++) {
+		//s.length（）函数源自于<string>，返回某个字符串的字符个数
+		//还有个等价函数size()
+		//这两个函数的括号里面是不能加数字的
+		if (s[i] == ' ') {
+			ans++;
+		}
+		else {
+			ans += a[s[i] - 'a'];
+			//每个单个字符的ASCII码就是当前字符在整数上的数值，通过减去字符'a'即可得到当前字符（小写）在26个字母中的顺位
+			//那么这个顺位就可以作为a[26]中的底标来判断出ans的个数了
+		}
+	}
+	cout << ans << endl;
+	return 0;
+}

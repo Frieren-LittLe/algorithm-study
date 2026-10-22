@@ -1,0 +1,26 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main() {
+	int s, v;
+	cin >> s >> v;
+	int time = (s + v - 1) / v + 10;
+	// (s + v - 1) / v 是 C++ 中整数向上取整的"黄金公式"，确保走不完的路也算 1 分钟
+	//为什么(s + v - 1) / v 能向上取整？
+		//整数除法会自动向下取整（舍弃小数）。加上 v - 1 后，只要有余数就会被"顶"到下一个整数。这是 C++ 中处理整数除法的经典技巧。
+	int arrive = 8 * 60;  // 8:00 转成分钟
+	int depart = arrive - time; // 往前推 time 分钟
+	// 时间处理：统一转成分钟，避免时和分 分别加减带来的借位/进位问题
+	if (depart < 0) {
+		depart += 24 * 60;
+	}
+	// 跨天处理：如果 depart < 0，说明要前一天出发，加 24 小时（1440 分钟）
+	int h = depart / 60;// 整除得到小时
+	int m = depart % 60;// 取余得到分钟
+	cout << setfill('0') << setw(2) << h << ":" << setfill('0') << setw(2) << m << endl;
+	// setw(2) 设置输出宽度为 2 个字符
+	// setfill('0') 设置宽度不足时用 '0' 填充
+	// 两者配合，确保小时和分钟始终显示为两位数（如 08:05）
+	return 0;
+}
