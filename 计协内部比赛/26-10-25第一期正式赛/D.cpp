@@ -1,0 +1,57 @@
+#include<iostream>
+using namespace std;
+int t;
+
+int main() {
+	cin >> t;//少输入了t，不要因为样例大就不去验证，容易犯下基础问题
+	//vj上面有一键复制样例。。。
+	while (t--) {
+		char a[10][10];
+		int ans = 0;
+		for (int i = 0;i < 10;i++) {
+			for (int j = 0;j < 10;j++) {
+				cin >> a[i][j];
+			}
+		}
+		for (int i = 0;i < 10;i++) {
+			for (int j = 0;j < 10;j++) {
+				//这里j打错成i了，很基础的粗心
+				//下面的写法是没有问题的
+				if (a[i][j] == 'X') {
+					if (i == 0 || i == 9) {
+						ans += 1;
+					}
+					else if (j == 0 || j == 9) {
+						ans += 1;
+					}
+					else if (i == 1 || i == 8) {
+						ans += 2;
+					}
+					else if (j == 1 || j == 8) {
+						ans += 2;
+					}
+					else if (i == 2 || i == 7) {
+						ans += 3;
+					}
+					else if (j == 2 || j == 7) {
+						ans += 3;
+					}
+					else if (i == 3 || i == 6) {
+						ans += 4;
+					}
+					else if (j == 3 || j == 6) {
+						ans += 4;
+					}
+					else if (i == 4 || i == 5) {
+						ans += 5;
+					}
+					else if (j == 4 || j == 5) {
+						ans += 5;
+					}
+				}
+			}
+		}
+		cout << ans << endl;
+	}
+	return 0;
+}
