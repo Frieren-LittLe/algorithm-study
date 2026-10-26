@@ -1,0 +1,186 @@
+{
+  "main": {
+    "id": "dbf5949825f18244",
+    "type": "split",
+    "children": [
+      {
+        "id": "830fd5896ae67ee7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "67ff379e3fb2a1b1",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "001基础语法55题/pdf版本/0035洛谷P1765 手机.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "0035洛谷P1765 手机"
+            }
+          },
+          {
+            "id": "dacf06de9765a4e2",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "001基础语法55题/pdf版本/0047洛谷P5737 闰年展示.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "0047洛谷P5737 闰年展示"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "38eb7cbb2e0d908f",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "3a2073d17813dc27",
+        "type": "leaf",
+        "state": {
+          "type": "file-explorer",
+          "state": {
+            "sortOrder": "alphabetical",
+            "autoReveal": false
+          },
+          "icon": "lucide-folder-closed",
+          "title": "文件列表"
+        }
+      },
+      {
+        "id": "2b4f42c7dc62960a",
+        "type": "leaf",
+        "state": {
+          "type": "search",
+          "state": {
+            "query": "",
+            "matchingCase": false,
+            "explainSearch": false,
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical"
+          },
+          "icon": "lucide-search",
+          "title": "搜索"
+        }
+      },
+      {
+        "id": "cc735d40808e51d3",
+        "type": "leaf",
+        "state": {
+          "type": "tag",
+          "state": {
+            "sortOrder": "frequency",
+            "useHierarchy": true,
+            "showSearch": false,
+            "searchQuery": ""
+          },
+          "icon": "lucide-tags",
+          "title": "标签"
+        }
+      },
+      {
+        "id": "903ad4b859f9ffce",
+        "type": "leaf",
+        "state": {
+          "type": "all-properties",
+          "state": {
+            "sortOrder": "frequency",
+            "showSearch": false,
+            "searchQuery": ""
+          },
+          "icon": "lucide-archive",
+          "title": "添加笔记属性"
+        }
+      },
+      {
+        "id": "c55da54f676963df",
+        "type": "leaf",
+        "state": {
+          "type": "bookmarks",
+          "state": {},
+          "icon": "lucide-bookmark",
+          "title": "书签"
+        }
+      }
+    ],
+    "currentTab": 0
+  },
+  "right": {
+    "id": "1e16081ea0a322e2",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "b515d9e09eb900f2",
+        "type": "leaf",
+        "state": {
+          "type": "backlink",
+          "state": {
+            "file": "001基础语法55题/pdf版本/0047洛谷P5737 闰年展示.pdf",
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical",
+            "showSearch": false,
+            "searchQuery": "",
+            "backlinkCollapsed": false,
+            "unlinkedCollapsed": true
+          },
+          "icon": "links-coming-in",
+          "title": "反向链接"
+        }
+      },
+      {
+        "id": "deb50a63ef6ec839",
+        "type": "leaf",
+        "state": {
+          "type": "outgoing-link",
+          "state": {
+            "file": "001基础语法55题/pdf版本/0047洛谷P5737 闰年展示.pdf",
+            "linksCollapsed": false,
+            "unlinkedCollapsed": true
+          },
+          "icon": "links-going-out",
+          "title": "出链"
+        }
+      },
+      {
+        "id": "7a4a15a403f93a60",
+        "type": "leaf",
+        "state": {
+          "type": "outline",
+          "state": {
+            "file": "001基础语法55题/pdf版本/0047洛谷P5737 闰年展示.pdf",
+            "followCursor": false,
+            "showSearch": false,
+            "searchQuery": ""
+          },
+          "icon": "lucide-list",
+          "title": "大纲"
+        }
+      }
+    ],
+    "currentTab": 0
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false
+    }
+  },
+  "active": "dacf06de9765a4e2",
+  "lastOpenFiles": [
+    "001基础语法55题/pdf版本/0035洛谷P1765 手机.pdf"
+  ]
+}
