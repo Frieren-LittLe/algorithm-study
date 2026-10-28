@@ -34,12 +34,12 @@ int main() {
 
     // 枚举中间部分 B[j]
     for (int j = 0; j < n; ++j) {
-        // lower_bound 找到第一个 >= B[j] 的元素迭代器，减去 begin() 得到严格小于 B[j] 的个数
+        // lower_bound 找到第一个 >= B[j] 的元素迭代器，减去 begin() 得到严格小于 B[j] 的个数 
         long long cnt_A = lower_bound(A.begin(), A.end(), B[j]) - A.begin();
 
         // upper_bound 找到第一个 > B[j] 的元素迭代器，用 end() 减去它得到严格大于 B[j] 的个数
         long long cnt_C = C.end() - upper_bound(C.begin(), C.end(), B[j]);
-
+        // lower_bound 和 upper_bound都源于algorithm
         ans += cnt_A * cnt_C;
     }
 
