@@ -10,7 +10,7 @@ int main() {
     cin.tie(NULL);
 
     int n;
-    if (!(cin >> n)) return 0;
+    cin >> n;
 
     string s;
     cin >> s;
