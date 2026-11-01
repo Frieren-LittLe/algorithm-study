@@ -2,6 +2,9 @@
 #include<algorithm>
 using namespace std;
 
+//一个简单的排序题，使我们对排序有一个基础的了解
+
+
 int main(){
   int n;
   cin >> n;
