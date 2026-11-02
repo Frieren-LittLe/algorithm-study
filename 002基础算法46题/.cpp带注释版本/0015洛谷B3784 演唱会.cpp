@@ -38,7 +38,7 @@ int main() {
     vector<Song> songs(n);
     for (int j = 1;j <= n;j++) songs[j - 1] = { j, sumhap[j] };
     // 将序号从1到n的歌曲及其hap值，依次存入底标从0到n-1的结构体组之中
-    
+    // j被存为id，sumhap[j]被存为Zhap
     sort(songs.begin(), songs.end(), [](const Song& x, const Song& y) {
         return x.Thap > y.Thap;
         });
