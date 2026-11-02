@@ -8,6 +8,9 @@ int main() {
 	int N, B;
 	cin >> N >> B;
 	vector<int> h(N);
+	// 排序好奶牛的大小，优先将大的排进去
+	// 并对排进的数量进行计数
+	// 当刚好满足条件时，输出结果
 
 	for (int i = 0;i < N;i++) {
 		cin >> h[i];
