@@ -13,7 +13,7 @@ struct P {
 bool cmp(const P& p1, const P& p2) {
 	return p1.z < p2.z;
 }
-// 对其高度进行排序
+// 制作一个cmp布尔比较函数，对其高度进行排序，小的优先位列前面
 double dis(const P& p1, const P& p2) {
 	return sqrt(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y, 2) + pow(p2.z - p1.z, 2));
 };
