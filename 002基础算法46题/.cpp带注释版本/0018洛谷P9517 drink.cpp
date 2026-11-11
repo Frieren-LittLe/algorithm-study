@@ -1,41 +1,36 @@
-#include <iostream>
+#include<iostream>
+#include<vector>
 using namespace std;
-
-long long a[500010];
-bool used[500100];
-
+// 本题严格意义来讲不能算贪心
+// 硬要说的话，本题贪心思维体现在左右端点各自贴紧首末水瓶，能不多扩就绝不多扩——局部不浪费即全局最短
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
-    // 这题我们只需要把每次抓到的新品牌都交换到左边并计算交换量
-    // 一旦抓够了k个新品牌就输出答案
-    // 若是遍历完了也抓不到k个，输出-1
+	int n;
+	cin >> n;
+	vector<int> a(n);
+	bool has = false;
+	// 注意:本题中有可能一瓶水都没有,于是我们声明一个布尔函数has判断无水的情况
+	for (int i = 0;i < n;i++) {
+		cin >> a[i];
+		if (a[i] == 1)has = true;
+		// 一旦填入的数中有1(有水)，则布尔函数has生效
+	}
 
-    int n, k;
-    cin >> n >> k;
-    for (int i = 1; i <= n; i++) cin >> a[i];
-    // 把橙汁品牌都存入数组a中
-    long long ans = 0;
-    // 累计最小交换代价
-    int g = 0;
-    // 已确定的不同品牌数量(即已填好的位置数)
-    for (int i = 1; i <= n; i++) {
-        if (!used[a[i]]) {
-            ans += i - g - 1;
-            // 遇到一个尚未使用的新品牌
-            g++;
-            // 把它从位置i交换到位置g+1的代价
-            used[a[i]] = true;
-            // 标记该品牌已使用
-            if (g == k) {
-                // 凑够k个不同品牌
-                cout << ans;
-                return 0;
-                // 从左往右选，首次凑够即为最小代价
-            }
-        }
-    }
-    cout << -1;
-    // 扫描完仍不足k个不同品牌，无解
-    return 0;
+	if (!has) {
+		// 当布尔函数未生效时(无水)，直接输出'0'
+		cout << 0;
+	}
+	else {
+		// 当布尔函数生效时
+		// 左边设立一个指针l找左边第一个有水的地方
+		// 右边设立一个指针r找右边第一个有水的地方
+		// 区间[l,r]即为要喝的水，瓶数为r - l +1 
+		int l = 0;
+		while (a[l] != 1)l++;
+
+		int r = n - 1;
+		while (a[r] != 1)r--;
+
+		cout << r - l + 1;
+	}
+	return 0;
 }
