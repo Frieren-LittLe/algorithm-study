@@ -1,4 +1,4 @@
-# 08 H · 二进制双端队列
+# 08 H · Codeforces 1692E Binary Deque
 
 ```cpp
 #include <iostream>

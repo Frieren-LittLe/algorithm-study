@@ -1,4 +1,4 @@
-# 05 F · 红蓝对抗
+# 05 F · Codeforces 1659A Red Versus Blue
 
 ```cpp
 #include <iostream>

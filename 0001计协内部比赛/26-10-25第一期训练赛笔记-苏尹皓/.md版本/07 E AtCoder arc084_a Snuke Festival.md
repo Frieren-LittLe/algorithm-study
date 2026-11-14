@@ -1,4 +1,4 @@
-# 07 E · Snuke 祭
+# 07 E · AtCoder arc084_a Snuke Festival
 
 ```cpp
 #include <iostream>

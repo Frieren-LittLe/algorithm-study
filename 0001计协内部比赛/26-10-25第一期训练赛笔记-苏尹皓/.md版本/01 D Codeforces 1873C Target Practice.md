@@ -1,4 +1,4 @@
-# 01 D · 打靶练习
+# 01 D · Codeforces 1873C Target Practice
 
 ```cpp
 #include <iostream>

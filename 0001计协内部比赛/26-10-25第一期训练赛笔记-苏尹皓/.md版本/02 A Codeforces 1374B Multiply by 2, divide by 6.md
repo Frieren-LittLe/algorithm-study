@@ -1,4 +1,4 @@
-# 02 A · 乘 2 除以 6
+# 02 A · Codeforces 1374B Multiply by 2, divide by 6
 
 ```cpp
 #include <iostream>

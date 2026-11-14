@@ -1,4 +1,4 @@
-# 03 G · 生存之战
+# 03 G · Codeforces 2013B Battle for Survive
 
 ```cpp
 // 这题的算法实现的思路是;

@@ -1,4 +1,4 @@
-# 06 B · 坏价格
+# 06 B · Codeforces 1213B Bad Prices
 
 ```cpp
 #include <iostream>

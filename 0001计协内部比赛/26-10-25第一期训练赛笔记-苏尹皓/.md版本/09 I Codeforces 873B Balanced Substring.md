@@ -1,4 +1,4 @@
-# 09 I · 平衡子串
+# 09 I · Codeforces 873B Balanced Substring
 
 ```cpp
 #include <iostream>
