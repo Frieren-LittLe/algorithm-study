@@ -12,6 +12,8 @@ int main() {
 		cin >> a >> b;
 		ans += a;
 		mx = max(ans, mx);
+		// 每次加完一个数据都会接着减去一个数据
+		// 最大值只可能出现在添加完新的a尚未减去新的b时
 		if (ans - b < 0) {
 			ans = 0;
 		}

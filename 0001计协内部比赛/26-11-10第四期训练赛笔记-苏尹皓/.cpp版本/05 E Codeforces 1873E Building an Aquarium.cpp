@@ -2,7 +2,7 @@
 #include<vector>
 #include<algorithm>
 using namespace std;
-
+// 一道经典的二分题，和砍树那题类似
 int n, x;
 vector<int> a;
 
