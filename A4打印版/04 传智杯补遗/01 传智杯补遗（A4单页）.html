@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>传智杯补遗 · 46 题之外的五块</title>
+<style>
+@page{size:A4;margin:9mm}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:#111;
+  font-family:"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  font-size:8.4pt;line-height:1.48}
+.page{width:192mm;height:277mm;margin:0 auto;display:flex;flex-direction:column}
+.head{border-bottom:1.6pt solid #111;padding-bottom:1.3mm;margin-bottom:2mm;flex:0 0 auto}
+.head h1{font-size:12pt;margin:0;letter-spacing:.01em}
+.head .sub{font-size:7.4pt;color:#555;margin-top:.5mm}
+.head .sub b{color:#111}
+.cols{display:flex;gap:0;flex:0 0 auto}
+.col{flex:1 1 0;min-width:0}
+.col:first-child{padding-right:3mm;border-right:1px solid #d8d8d8}
+.col:last-child{padding-left:3mm}
+section{margin-bottom:1.7mm}
+section h2{font-size:9pt;margin:0 0 1mm;padding:.6mm 2mm;background:#1a1a1a;color:#fff;
+  letter-spacing:.04em;font-weight:600}
+section h2 em{float:right;font-style:normal;opacity:.92;font-weight:400;font-size:6.9pt;letter-spacing:0}
+.ag h2{background:#fff;color:#111;border:1pt solid #111;border-left:2.4pt solid #c06000}
+pre{margin:0;padding:1.2mm 1.7mm;background:#f5f5f5;border-left:2pt solid #888;
+  font-family:Consolas,"Cascadia Code",monospace;font-size:7.15pt;line-height:1.36;
+  white-space:pre-wrap;overflow-wrap:break-word}
+code{font-family:Consolas,"Cascadia Code",monospace;font-size:7.7pt;background:#efefef;padding:0 .5mm}
+p{margin:.65mm 0}
+ul{margin:.4mm 0;padding-left:3.6mm}
+li{margin:.2mm 0}
+.note{font-size:7.5pt;color:#3f3f3f;margin:.7mm 0 0;line-height:1.42}
+.key{background:#fff8e6;border-left:2pt solid #e0a020;padding:.8mm 1.7mm;margin:.8mm 0 0;font-size:7.5pt}
+.write{flex:1 1 auto;min-height:11mm;margin-top:2mm;border:.35mm dashed #c4c4c4;border-radius:2mm;
+  padding:1.2mm 2.2mm;font-size:7.5pt;color:#9a9a9a}
+.foot{margin-top:1.4mm;border-top:1px solid #ccc;padding-top:.9mm;font-size:6.9pt;color:#666;
+  display:flex;justify-content:space-between}
+@media print{.page{height:277mm}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="head">
+  <h1>传智杯补遗 · 46 题之外的五块</h1>
+  <div class="sub">插在《基础算法 46 题 · 总复习》第 13 章「46 题速查表」之后、第 14 章之前。<br>
+    第 14 章那五条长远路线赛前来不及全学——这页只挑<b>第八届省赛真考过、46 题没覆盖</b>的五块。<br>
+    已覆盖、不再重复：<b>枚举 · 模拟 · 排序 · 贪心 · 前缀和/差分 · 二分 · 双指针 · 递推 · 搜索 · 离散化 · 树状数组</b></div>
+</div>
+
+<div class="cols">
+<div class="col">
+
+<section>
+<h2>① 拆位贡献 <em>第二场 T5</em></h2>
+<pre>a&amp;1 奇偶 ｜ a&amp;(a-1) 去末尾的 1 ｜ (a&gt;&gt;k)&amp;1 取位 ｜ a&lt;&lt;k 乘 2^k
+
+ll tot = 1LL*n*(n+1)/2, ans = 0;
+for (int k = 0; k &lt; 30; k++) {
+    ll bad = 0, run = 0;
+    for (int i = 0; i &lt; n; i++) {
+        if ((a[i] &gt;&gt; k) &amp; 1) run = 0;
+        else { run++; bad += run; }
+    }
+    ans = (ans + (tot-bad)%MOD * ((1LL&lt;&lt;k)%MOD)) % MOD;
+}</pre>
+<div class="key"><b>三句话：</b>① 各位独立，拆开算；② 正难则反，算「这一位全 0」的子数组数，再用总数减；③ 连续 0 段长 L 贡献 L(L+1)/2 个（代码里 <code>bad += run</code> 就是在累加 1+2+…+L）。枚举 0—29 位即可（a ≤ 1e9 &lt; 2³⁰）。</div>
+</section>
+
+<section>
+<h2>② 相同值合并 + 桶 <em>第二场 T7</em></h2>
+<pre>vector&lt;pair&lt;int,ll&gt; &gt; pre, cur;   // 每种「与值」及出现次数
+for (int j = 0; j &lt; m; j++) {
+    cur.assign(1, make_pair(b[j], 1LL));
+    for (auto &amp;p : pre) {
+        int v = p.first &amp; b[j];
+        if (cur.back().first != v)
+            cur.push_back(make_pair(v, 0LL));
+        cur.back().second += p.second;
+    }
+    for (auto &amp;p : cur) cnt[p.first] += p.second;   // 桶
+    pre = cur;
+}</pre>
+<p class="note"><b>外层怎么套：</b>枚举上边界 r1 令 <code>b[j]=a[r1][j]</code>，再逐行下压 r2（先 <code>b[j]&amp;=a[r2][j]</code>）后跑上面这段，就把二维压成了一维。<br>
+<b>为什么能省：</b>与运算只会让数变小，往左延伸的与值单调不增，最多变 30 次 → <code>pre</code> 长度 ≤ 30。值域 ≤ 1000 时直接开 <code>cnt[1024]</code> 统计，最后从头累加找中位数，<b>不用排序也不用二分</b>。总复杂度 O(n²m·30)。</p>
+</section>
+
+<section>
+<h2>③ 数论四件套 <em>第一场 5</em></h2>
+<pre>ll gcd(ll a,ll b){ return b ? gcd(b,a%b) : a; }
+ll lcm(ll a,ll b){ return a / gcd(a,b) * b; }   // 先除后乘
+ll qpow(ll a,ll b,ll mod){
+    ll r = 1; a %= mod;
+    while (b) { if (b&amp;1) r = r*a%mod; a = a*a%mod; b &gt;&gt;= 1; }
+    return r;
+}
+for (ll i = 1; i*i &lt;= n; i++) if (n % i == 0) {
+    // i 与 n/i 成对，一次枚举拿两个约数
+}
+for (int i = 2; i &lt;= n; i++) if (!vis[i])       // 埃氏筛
+    for (ll j = 1LL*i*i; j &lt;= n; j += i) vis[j] = 1;</pre>
+<p class="note"><b>第一场 5 的推导（背下来直接拿分）：</b>lcm/gcd = uv / g²，且 <b>gcd(a+x, b+x) = gcd(a+x, |a−b|)</b>。枚举 d = |a−b| 的每个约数 g，取最小正整数 x 使 g | (a+x)：<code>x = (g - a%g) % g</code>，<b>x = 0 时改成 x = g</b>（题要 x 为正整数，错这里样例就过不去）。a = b 时 d = 0，答案是 1。</p>
+</section>
+
+<section class="ag">
+<h2>A 组加餐 · 曼哈顿转切比雪夫 <em>第二场 T6</em></h2>
+<pre>u = x + y;   v = x - y;
+|x1-x2| + |y1-y2|  ==  max(|u1-u2|, |v1-v2|)</pre>
+<p class="note">菱形边框转 45° 就成了轴对齐矩形，四条边各是一段连续区间，套前缀最值。问「距离恰好为 k」的点，本质是在这四条边上取 max。</p>
+</section>
+
+</div>
+<div class="col">
+
+
+<section>
+<h2>④ 线性 DP：状态 = 资源余额 <em>第二场 T4</em></h2>
+<pre>vector&lt;ll&gt; dp(m+1, -1);  dp[0] = 0;    // -1 = 到不了
+for (int i = 0; i &lt; n; i++) {
+    vector&lt;ll&gt; ndp(m+1, -1);
+    for (int j = 0; j &lt;= m; j++) {
+        if (dp[j] &lt; 0) continue;
+        if (j + b[i] &lt;= m)                       // 学习
+            ndp[j+b[i]] = max(ndp[j+b[i]], dp[j]+a[i]);
+        int nj = max(0, j - (int)b[i]);          // 放松
+        ndp[nj] = max(ndp[nj], dp[j]);
+    }
+    dp = ndp;                                    // 滚动数组
+}</pre>
+<p class="note"><b>三步设计状态：</b>① 这一步在决策什么（学 / 放松）② 决策完什么信息影响后面（压力值）③ 把那个量做成下标。<b>放松后压力减 b[i]，减成负数按 0 算</b>（钳位别忘）。<b>非法态用 −1 或 −1e9 初始化，不要用 0</b>，否则「到不了」会被当成「收益为 0」。<br>
+背包是同一套：01 背包容量维<b>倒序</b>、完全背包<b>正序</b>，差别只在这件物品能不能重复拿。</p>
+</section>
+
+<section>
+<h2>⑤ 并查集 <em>10 行，最便宜</em></h2>
+<pre>int fa[N];
+void init(int n){ for (int i=1;i&lt;=n;i++) fa[i]=i; }
+int find(int x){
+    return fa[x]==x ? x : fa[x] = find(fa[x]);   // 路径压缩
+}
+void merge(int a,int b){ fa[find(a)] = find(b); }
+// 判连通：find(a) == find(b)</pre>
+<p class="note">认题信号：「连通块」「合并」「是否同一组」「朋友圈」「等价关系」。46 题里的 P1596 水坑（八方向染色）用并查集也能做，可以拿来对拍。</p>
+</section>
+
+<section>
+<h2>⑥ STL 补漏 <em>模拟题必备</em></h2>
+<pre>deque&lt;int&gt; dq;   push_back / push_front / pop_back / pop_front
+priority_queue&lt;int,vector&lt;int&gt;,greater&lt;int&gt; &gt; pq;   // 小根堆
+map&lt;string,int&gt; mp;  mp[k]++;    // 不存在默认 0，最省事
+set&lt;int&gt; s;  s.insert(x); s.count(x); s.erase(x);</pre>
+<p class="note"><b>string 三个坑：</b><code>cin&gt;&gt;s</code> 遇空格就停；读整行用 <code>getline(cin,s)</code>，前面有 <code>cin&gt;&gt;n</code> 时先 <code>getchar()</code> 吃掉换行；<code>s.find(t)</code> 找不到返回 <code>npos</code>，别拿去当下标。<br>
+你已练过栈（B3614）、队列（B3616）、堆（P3378）、后缀表达式（P1449）、合并果子（P1090）——<b>只补 deque / map / set</b>。</p>
+</section>
+
+
+<section>
+<h2>⑦ 五块各对应哪道真题</h2>
+<ul>
+<li><b>第一场 5 lcm/gcd</b> → ③ 数论（枚举约数 + x=0 那个坑）</li>
+<li><b>第二场 T4 我有一个博丽灵梦</b> → ④ DP（状态 = 压力值）</li>
+<li><b>第二场 T5 或许要期待明天</b> → ① 拆位（全 0 段反算）</li>
+<li><b>第二场 T7 最好的朋友1</b> → ② 合并与值 + 桶找中位数</li>
+<li><b>第二场 T6 再临艾弗埃恩地</b> → A 组加餐（曼哈顿转切比雪夫）</li>
+<li>已覆盖不用补：<b>T3 数组重乘法</b>、<b>第一场 4 中位数</b></li>
+</ul>
+<div class="key"><b>按性价比排：</b>① 拆位（最好学、最可能考）&gt; ⑤ 并查集（10 行）&gt; ③ 数论 &gt; ④ DP &gt; ② 合并与值（偏难，B 组可放弃）&gt; A 组加餐。</div>
+</section>
+</div>
+
+</div>
+
+<div class="write">✎ 打印后手写默写：① 拆位三句话 ▢　② gcd / lcm ▢　③ 01 背包为什么倒序 ▢　④ find 路径压缩 ▢　⑤ 曼哈顿转切比雪夫两组式子 ▢</div>
+
+<div class="foot">
+  <span>传智杯补遗单页 · 与《5 天冲刺复习指南》配套</span>
+  <span>A4 纵向 · 1 张纸，夹进 46 题总复习</span>
+</div>
+
+</div>
+</body>
+</html>
