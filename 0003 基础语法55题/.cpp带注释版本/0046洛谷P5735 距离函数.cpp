@@ -1,0 +1,23 @@
+#include<iostream>
+#include<cmath>
+#include<iomanip>
+using namespace std;
+
+double dis(double x1, double y1, double x2, double y2) {
+	//在自定义函数引入因变量时，每个变量要独立声明其类型;如double x1,double x2，不能直接简写成double x1,x2;
+	return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
+//制作一个读取x1,y1,x2,y2就可以算出两点之间距离的函数工具
+int main() {
+	double x1, y1, x2, y2, x3, y3;
+	cin >> x1 >> y1;
+	cin >> x2 >> y2;
+	cin >> x3 >> y3;
+	//依次读取各个坐标数据
+	double L1 = dis(x1, y1, x2, y2);
+	double L2 = dis(x1, y1, x3, y3);
+	double L3 = dis(x2, y2, x3, y3);
+	//应用我们建立的距离公式，算出L1，L2，L3；
+	double ans = L1 + L2 + L3;
+	cout << fixed << setprecision(2) << ans << endl;
+	return 0;
+}

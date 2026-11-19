@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	char c;
+//char的作用是1.存储单个字符（如‘a','1','+')2.存储小整数
+//char是C＋＋内置的关键字，不来自任何头文件
+	cin >> c;
+//cin全称character input 来源<iostream> 作用为从键盘读取数据
+//注意cin后面接的两个大括号，别跟cout的小括号搞混了
+	cout << "  " << c << endl;
+	cout << " " << c << c << c << endl;
+	cout << c << c << c << c << c << endl;
+
+	return 0;
+}

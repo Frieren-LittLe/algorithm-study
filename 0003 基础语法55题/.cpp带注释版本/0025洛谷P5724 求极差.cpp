@@ -1,0 +1,27 @@
+#include<iostream>
+using namespace std;
+int main() {
+	int n;
+	int a[101];
+	cin >> n;
+	for (int i = 0;i < n;i++) {
+		cin >> a[i];
+		//i++是i=i+1的简写
+		//这是用for函数不断地给固定数组赋值的方式
+	}
+	int min_a = a[0];
+	int max_a = a[0];
+	//先设置一个最小值和最大值，暂且假设目前的最大值为a[0]
+	for (int i = 1;i < n;i++) {
+		if (a[i] < min_a) {
+			min_a = a[i];
+			//从1到n-1开始数，只要当前数的数大于目前的最大值，就令其为新的最大值
+		}
+		if (a[i] > max_a) {
+			max_a = a[i];
+			//求最小值也同理
+		}
+	}
+	cout << max_a - min_a << endl;
+	return 0;
+}

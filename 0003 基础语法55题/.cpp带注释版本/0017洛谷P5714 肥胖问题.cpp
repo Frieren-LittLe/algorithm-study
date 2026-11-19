@@ -1,0 +1,27 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+	float m, h;
+	cin >> m >> h;
+	double BMI = m / pow(h, 2);
+	if (BMI < 18.5) {
+		//if的格式是：if（执行条件）{执行步骤}
+		cout << "Underweight" << endl;
+	}
+	else if (BMI >= 18.5 && BMI < 24) {
+//&& 就是逻辑运算符中的 "并且/和"，表示所有条件必须同时成立
+		cout << "Normal" << endl;
+	}
+	else if (BMI >= 24) {
+		cout << BMI << endl << "Overweight";
+	}
+	// if , else if 和 else之间的区别:
+	// if是"如果..就",条件成立就执行，可以单独使用;
+	// 多个独立的 if 排队，会依次执行、叠加生效;
+	//else if是"否则如果..."，必须跟在一个if或else if后面，只有当它前面的所有条件都失败了，才会来检查自己的条件
+	// 多个 else if 排队，谁先满足就执行谁，后面的不再看
+	//else是"剩下的全部"，必须跟在最后面，当前面所有 if 和 else if 都不满足时，它就会无差别执行，不需要判断任何条件
+	return(0);
+}

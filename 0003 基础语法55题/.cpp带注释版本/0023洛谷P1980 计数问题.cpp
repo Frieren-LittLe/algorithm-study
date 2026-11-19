@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n, x, ans = 0;
+    cin >> n >> x;
+
+    for (int i = 1; i <= n; i++) {//从1开始数，数到n
+        int t = i;
+        //令t的值等于i的值，是为了防止i在后续的操作中被改动
+        while (t > 0) {
+            if (t % 10 == x) {
+                //当t除以十取余数（也就是当t的个位数）为x时，ans++
+                ans++;
+
+            }
+            t = t / 10;
+            //然后把个位数删去，令十位数为新的个位数
+        }
+    }
+    //重复循环，来得到x出现了多少次
+    cout << ans << endl;
+    return 0;
+}
