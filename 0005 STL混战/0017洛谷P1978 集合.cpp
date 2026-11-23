@@ -1,21 +1,30 @@
 #include<iostream>
 #include<set>
-#include<vector>
 #include<algorithm>
-#include<cmath>
 using namespace std;
-// 本题要求我们求ans表示最大的k-集合的大小
-// 为了让选出的数最多，贪心地优先选最小的(即选第1，3，5......个)，就能保证每条长度为L的链都取到理论最大值[L/2]
+// 本题的贪心解法是:
+// 把所有不是 k 的倍数的数都存进去
+// 是 k 的倍数的数，从小到大一个一个看着去存
+// 一旦发现当前数 a[i] 除以 k 后的那个数（a[i]/k）已经被存进集合里了，就跳过该数
+// 否则存进去
 int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(nullptr);
-	int n;
-	long long k;
+	int n, k;
 	cin >> n >> k;
-	vector<long long> a(n);
-	for (int i = 0; i < n;i++)
 
+	long long a[100005];
+	// a的数据范围为-2^63+1~2^63-1
+	for (int i = 0;i < n;i++) {
+		cin >> a[i];
+	}
+	sort(a, a + n);
 
-
-
+	set<long long> s;
+	for (int i = 0;i < n;i++) {
+		if (a[i] % k != 0 || s.find(a[i] / k) == s.end()) {
+			s.insert(a[i]);
+		}
+	}
+	// 最终输出set的大小
+	cout << s.size() << endl;
+	return 0;
 }
