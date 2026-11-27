@@ -28,7 +28,7 @@ int main() {
             // "(队列名).front()"表示的是队首的元素
         }
         else if (op == 4) {
-            cout << q.size << endl;
+            cout << q.size() << endl;
             // "(栈名).size()"表示的是当前队列的长度
         }
     }
