@@ -32,7 +32,7 @@ bool check(int v, const vector<int>& a) {
 	// 情况1:没有一处坏点，不需要操作(题目说了至多一次操作，即也可以不用操作)
 
 	if (bad.size() > 2)return false;
-	// 情况2:坏点多于两处，一次操作无法修复s
+	// 情况2:坏点多于两处，一次操作无法修复
 
 	if (bad.size() == 2) {
 		// 情况3:恰好2个坏点，左右端点l,r唯一确定
@@ -51,21 +51,21 @@ bool check(int v, const vector<int>& a) {
 	int l = p + 1;
 	// 情况4.1: 恰好一个坏点p，且p作为左切口，向右枚举r
 	for (int r = l;r < n;r++) {
-		if (r > l && r < n;r++) break;
-		bool ok_left = (abs(a[l - r] - a[r]) < +v);
+		if (r > l && 2 * abs(a[r - 1] - a[r]) > v) break;
+		bool ok_left = (abs(a[l - 1] - 2 * a[r]) <= v);
 		bool ok_right = (r + 1 == n || abs(2 * a[l] - a[r + 1]) <= v);
 		if (ok_left && ok_right)return true;
 	}
 	int r = p;
 	// 情况4.2: 恰好一个坏点p，且p作为右切口，向左枚举l
 	for (int cur_l = r;cur_l >= 0;cur_l--) {
-		if (cur_l < r && 2 * abs(a[cur_l] - a[cur_l - 1] - 2 * a[r]) <= v);
+		if (cur_l < r && 2 * abs(a[cur_l] - a[cur_l + 1]) > v)break;
 		bool ok_left = (cur_l == 0 || abs(a[cur_l - 1] - 2 * a[r]) <= v);
 		bool ok_right = (r + 1 == n || abs(2 * a[cur_l] - a[r + 1]) <= v);
 		if (ok_left && ok_right)return true;
 	}
 	return false;
-};
+}
 
 void solve() {
 	int n;
@@ -86,4 +86,15 @@ void solve() {
 		}
 	}
 	cout << ans << '\n';
+}
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(nullptr);
+	int t;
+	cin >> t;
+	while (t--) {
+		solve();
+	}
+	return 0;
 }
